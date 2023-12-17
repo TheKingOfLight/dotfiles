@@ -15,6 +15,7 @@
 
 # general
 alias update="sudo zypper dup && flatpak update && distrobox-upgrade --all"
+alias config='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 
 # vim
 alias svim="sudo vim"

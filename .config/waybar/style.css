@@ -1,0 +1,135 @@
+/*________________________________________________________________
+ *________________________________________________________________
+ *
+ * Waybar config
+ * Style of a i3status with mint-y-aqua colours
+ * For a single monitor
+ * vers. 0.0.1
+ *
+ *________________________________________________________________
+ *________________________________________________________________
+*/
+
+
+
+
+/*
+ * ________________________________________________________________
+ * General Settings
+*/
+
+/* Global */
+* {
+    border:        none;
+    border-radius: 0;
+    font-family:   "pango:monospace";
+    font-size:     10px;
+    box-shadow:    none;
+    text-shadow:   none;
+    transition-duration: 0s;
+}
+
+/* Button */
+button {
+    border: 1px;
+    border-radius: 0;
+    border-color: #333333;
+}
+
+/* Button on hover
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px #FFFFFF;
+}
+*/
+
+/* Full Waybar */
+window#waybar {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+
+/*
+ * ________________________________________________________________
+ * Worspaces config
+*/
+
+/* ??? */
+window#waybar.solo {
+    color: #FFFFFF;
+}
+
+/*  */
+#workspaces {
+    margin: 0 0px;
+}
+/* Inactive (General)  Worspace */
+#workspaces button {
+    padding: 0 5px;
+    color: #888888;
+    background-color: #222222;
+    border: 1px solid #333333;
+    margin: 1 1px;
+}
+
+/* Active Worspace */
+#workspaces button.focused {
+    color: #FFFFFF;
+    background-color: #222222;
+    border: 1px solid #333333;
+}
+
+/* Focused  Worspace*/
+#workspaces button.visible {
+    color: #FFFFFF;
+    background-color: #105273;
+    border: 1px solid #1F9EDE;
+}
+
+/* Urgent Workspace */
+#workspaces button.urgent {
+    color: #FFFFFF;
+    background-color: #900000;
+    border: 1px solid #2F343A;
+}
+
+/* Scratchpad config */
+#custom-scratchpad {
+    margin: 0px	5px;
+    padding: 0px 5px;
+}
+
+
+/*
+ * ________________________________________________________________
+ * Modules
+*/
+
+/* General Modules */
+#mode, 
+#cpu, 
+#memory, 
+#pulseaudio, 
+#idle_inhibitor, 
+#temperature,
+#custom-layout,
+#zypper{
+    margin: 0px 0px 0px 3px;
+}
+
+#clock {
+    margin: 0px 0px 0px 3px;
+}
+
+#temperature.critical {
+    color: #BF616A;
+}
+
+#cpu.degraded {
+    color: #EBCB8B;
+}
+
+#temperature.critical {
+    color: #BF616A;
+}
