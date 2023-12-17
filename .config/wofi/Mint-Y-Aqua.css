@@ -1,0 +1,73 @@
+/* 
+ * Mint-Y-Dark-Aqua
+ * Rofi theme inspired by Linux Mint theme
+ * King of the Light
+ */
+
+/* Define Colors */
+:root {
+        --background:                  #383838;
+        --text-color:                  #f2f2f2;
+        --bordercolor:                 #1F9EDE;
+        --separatorcolor:              #8c8c8c;
+        --normal-background:           #383838;
+        --normal-foreground:           #ffffff;
+        --alternate-normal-foreground: #404040;
+        --selected-normal-background:  #1F9EDE;
+        --selected-normal-foreground:  #ffffff;
+        --active-background:           #858585;
+        --active-foreground:           #ffffff;
+        --alternate-active-background: #858585;
+        --selected-active-background:  #1F9EDE;
+        --selected-active-foreground:  #fdf6e3;
+        --urgent-background:           #dc322f;
+        --urgent-foreground:           #ffffff;
+        --alternate-urgent-background: #dc322f;
+        --selected-urgent-background:  #6aa0bd;
+        --selected-urgent-foreground:  #ffffff;
+        --alternate-normal-foreground: var(--normal-foreground);
+        --alternate-urgent-foreground: var(--urgent-foreground);
+        --alternate-active-foreground: var(--active-foreground);
+        --foreground:                  var(--normal-foreground);
+        --separator-color:             var(--separatorcolor);
+}
+
+window {
+        border: 1px solid var(--bordercolor);
+        background-color: var(--background);
+}
+
+#input {
+        color: var(--normal-forground);
+        border: 0px;
+        background-color: var(--background);
+}
+
+#inner-box {
+        margin: 5px;
+        border: 2px solid yellow;
+        background-color: yellow;
+}
+
+#outer-box {
+        margin: 5px;
+        border: 2px solid green;
+        background-color: green;
+}
+
+#scroll {
+        margin: 4px 0px;
+        border: 0px solid orange;
+        background-color: var(--seperator);
+}
+
+#text {
+        margin: 5px;
+        border: 2px solid cyan;
+        background-color: cyan;
+}
+
+#entry:selected {
+        color: var(--active-foreground);
+        background-color: var(--active-background);
+}
