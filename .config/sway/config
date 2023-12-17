@@ -36,7 +36,7 @@ set $mod Mod4
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # it is set in config.d/50-openSUSE.conf
-set $menu wofi --conf=/etc/wofi/config --style=/etc/wofi/style.css
+set $menu wofi --conf=$HOME/.config/wofi/config --style=/etc/wofi/Mint-Y-Aqua.css -I
 bindsym $mod+d exec $menu
 
 
@@ -47,10 +47,12 @@ bindsym $mod+d exec $menu
 
 # Define Theme and Bar design
 set $theme 'theme-aqua.conf'
-set $bar 'bar-aqua.conf'
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/wallpapers/default-1920x1080.jpg fill
+
+# Start the bar
+bar swaybar_command waybar
 
 
 #
@@ -63,7 +65,6 @@ include keybinding.conf
 
 # Importing the specified Themes
 include $theme
-include $bar
 
 
 #
