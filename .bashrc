@@ -14,7 +14,6 @@
 # custom alias
 
 # general
-alias update="sudo zypper dup && flatpak update && distrobox-upgrade --all"
 alias config='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 
 # vim
@@ -23,6 +22,14 @@ alias svim="sudo vim"
 # ls
 alias ls="ls --color=auto"
 alias ls.="ls -d .* --color=auto"
+
+# zypper/yast
+alias zypper="sudo zypper"
+alias appinfo="\zypper info"
+alias appsearch="\zypper search"
+alias update="sudo \zypper ref && sudo \zypper dup && flatpak update && distrobox-upgrade --all"
+
+alias yast="su -c 'yast --qt'"
 
 
 # default
