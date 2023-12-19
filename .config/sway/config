@@ -36,7 +36,7 @@ set $mod Mod4
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # it is set in config.d/50-openSUSE.conf
-set $menu wofi --conf=$HOME/.config/wofi/config --style=/etc/wofi/Mint-Y-Aqua.css -I
+set $menu wofi --conf=$HOME/.config/wofi/config  --style=$HOME/.config/wofi/Mint-Y-Aqua.css 
 bindsym $mod+d exec $menu
 
 

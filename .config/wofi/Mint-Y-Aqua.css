@@ -32,42 +32,77 @@
         --separator-color:             var(--separatorcolor);
 }
 
+*{
+    font-family: monospace;
+    font-size: 16px;
+}
+
 window {
-        border: 1px solid var(--bordercolor);
-        background-color: var(--background);
-}
-
-#input {
-        color: var(--normal-forground);
-        border: 0px;
-        background-color: var(--background);
-}
-
-#inner-box {
-        margin: 5px;
-        border: 2px solid yellow;
-        background-color: yellow;
+    border: 1px;
+    border-style: solid;
+    border-color: #1F9EDE;
+    border-radius: 0px;
+    background-color: var(--background);
 }
 
 #outer-box {
-        margin: 5px;
-        border: 2px solid green;
-        background-color: green;
+    margin: 5px;
+    padding: 0px;
+    background-color: var(--background);
+}
+
+#input {
+    margin: 0px;
+    padding: 2px;
+    border: 2px;
+    border-radius: 0px;
+    border-color: var(--separatorcolor);
+    border-style: none none dashed none;
+    color: var(--text-color);
+    background-color: var(--background);
+    font-size: 18px;
 }
 
 #scroll {
-        margin: 4px 0px;
-        border: 0px solid orange;
-        background-color: var(--seperator);
+    margin: 1px 0px;
+    font-size: 16px;
+    color: var(--urgent-background);
+}
+
+#inner-box {
+    margin: 0px;
+    color: var(--text-color);
+    background-color: var(--background);
+}
+
+#img {
+    padding: 0px;
 }
 
 #text {
-        margin: 5px;
-        border: 2px solid cyan;
-        background-color: cyan;
+    padding: 0px;
+    color: var(text-color);
+}
+
+#scroll label {
+    margin: 1px 0px;
+}
+
+#entry {
+    padding: 0px;
+    margin: 0px;
+    color: var(--normal-foreground);
+    background-color: var(--normal-background)
 }
 
 #entry:selected {
-        color: var(--active-foreground);
-        background-color: var(--active-background);
+    margin: 0px;
+    border-radius: 0px;
+    color: var(--selected-normal-foreground);
+    background-color: #1F9EDE;
+}
+
+#entry:nth-child(even){
+	color: var(--alternate-normal-foreground);
+	background-color: var(--alternate-normal-background);
 }
