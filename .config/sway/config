@@ -75,8 +75,7 @@ include $theme
 # Output
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-# Single 1920x1080 at 60Hz
-output Virtual-1 resolution 1920x1080@59.968Hz position 1920,0
+include display_linux-pc.conf
 
 # Input
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -86,6 +85,7 @@ input "type:keyboard" {
 	xkb_layout de
 	xkb_variant ,nodeadkeys
 	xkb_options grp:alt_shift_toggle
+	xkb_numlock enable
 }
 
 # Example configuration:

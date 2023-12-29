@@ -66,7 +66,7 @@ window#waybar.solo {
 }
 /* Inactive (General)  Worspace */
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 2px;
     color: #888888;
     background-color: #222222;
     border: 1px solid #333333;
