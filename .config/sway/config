@@ -36,7 +36,7 @@ set $mod Mod4
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # it is set in config.d/50-openSUSE.conf
-set $menu wofi --conf=$HOME/.config/wofi/config --style=/etc/wofi/Mint-Y-Aqua.css -I
+set $menu wofi --conf=$HOME/.config/wofi/config  --style=$HOME/.config/wofi/Mint-Y-Aqua.css 
 bindsym $mod+d exec $menu
 
 
@@ -120,10 +120,20 @@ exec swayidle -w \
 # Technical Setup
 #
 
-# OpenSUSE some authentication ???
-exec /usr/libexec/polkit-gnome-authentication-agent-1
+# Does not work: overriding
+# include /etc/sway/config.d/*
 
-# OpenSUSE default config 
-# Mainly as backup
-	# include /etc/sway/config.d/*.conf
-	# include ~/.config/sway/config.d/*
+# Manual copy of fooder
+set $wob wob --config /etc/sway/wob/wob.ini
+
+exec_always {
+    systemctl --user import-environment
+    gsettings set org.gnome.desktop.interface gtk-theme 'Mint-Y-Dark-Aqua'
+    gsettings set org.gnome.desktop.interface icon-theme 'Mint-Y-Aqua'
+    gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+    test -e $SWAYSOCK.wob || mkfifo $SWAYSOCK.wob
+    tail -f $SWAYSOCK.wob | $wob
+    swaync --style /etc/sway/swaync/style.css --config /etc/sway/swaync/config.json
+}
+
+exec /usr/libexec/polkit-gnome-authentication-agent-1
