@@ -66,11 +66,11 @@ window#waybar.solo {
 }
 /* Inactive (General)  Worspace */
 #workspaces button {
-    padding: 0 2px;
+    padding: 0 1px;
     color: #888888;
     background-color: #222222;
     border: 1px solid #333333;
-    margin: 1 1px;
+    margin: 0 1px;
 }
 
 /* Active Worspace */
@@ -96,8 +96,8 @@ window#waybar.solo {
 
 /* Scratchpad config */
 #custom-scratchpad {
-    margin: 0px	5px;
-    padding: 0px 5px;
+    margin: 0px	2px;
+    padding: 0px 2px;
 }
 
 
@@ -107,19 +107,21 @@ window#waybar.solo {
 */
 
 /* General Modules */
-#mode, 
 #cpu, 
 #memory, 
-#pulseaudio, 
 #idle_inhibitor, 
-#temperature,
 #custom-layout,
-#zypper{
-    margin: 0px 0px 0px 3px;
+#clock{
+    margin: 0px 0px 0px 0px;
+    padding-right: 4px;
+    padding-left: 4px;
+    border-right: 1px solid #FFFFFF;
 }
 
-#clock {
-    margin: 0px 0px 0px 3px;
+
+#notification {
+    margin: 0px 0px 0px 0px;
+    padding-left: 4px;
 }
 
 #temperature.critical {

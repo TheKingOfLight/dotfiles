@@ -2,15 +2,23 @@
 //________________________________________________________________
 //
 // Waybar config
-// Style of a i3status with mint-y-aqua colours
-// For a single monitor
-// vers. 0.0.1
+// Style of a i3status
+// For two monitors
+// vers. 0.0.2
 //
 //________________________________________________________________
 //________________________________________________________________
 //
-{
 
+
+
+
+//
+//________________________________________________________________
+// Main monitor
+//
+[{
+    "output": "DP-1",
 
 
 //
@@ -20,8 +28,8 @@
 
     "layer": "top",
     "position": "bottom",
-    //"height": 1,
-    // "width": 1280, // Waybar width
+    "height": 8,
+    // "width": 1280, 
     // "gtk-layer-shell": "false",
     
 
@@ -30,9 +38,9 @@
 // Layout
 //
 
-    "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode", "tray"],
+    "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode"],
     "modules-center": [],
-    "modules-right": ["cpu", "memory", "temperature", "pulseaudio", "custom/layout", "custom/zypper", "clock", "custom/notification"],
+    "modules-right": ["cpu", "memory", "clock", "custom/notification"],
     
 
 //
@@ -62,27 +70,11 @@
         "on-click": "swaymsg 'scratchpad show'",
         "on-click-right": "swaymsg 'move scratchpad'"
     },
-   
-// Zypper pdates available 
-    "custom/zypper": {
-        "format": " {} up |",
-        "interval": 18000,
-        "exec": "zypper lu | grep 'v |' | wc -l; echo 'packages to update'",
-        "exec-if": "exit 0",
-        "on-click": "exec alacritty -e sudo sh -c 'zypper ref; zypper dup && flatpak update && distrobox-update --all; pkill -SIGRTMIN+8 waybar'",
-        "signal": 8
-    },
-
-// Tray
-   "tray": {
-        "icon-size": 15,
-        "spacing": 10
-    },
-
+  
 // Clock
     "clock": {
         "timezone": "Germany/Berlin",
-        "format": "{:20%y-%m-%Y %H:%M} |",
+        "format": "{:20%y-%m-%Y %H:%M}",
         "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
         "today-format": "<span color='#21a4df'><b><u>{}</u></b></span>",
         "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",
@@ -93,7 +85,7 @@
 
 // CPU
     "cpu": {
-        "format": "{usage}% |",
+        "format": "{usage}%",
         "tooltip": false,
 	"interval": 10,
 	"states": {
@@ -104,39 +96,7 @@
 
 // Memory
     "memory": {
-        "format": "{total} GiB |"
-    },
-
-// Temperature
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""],
-	"critical-threshold": 65,
-	"interval": 30    
-    },
-
-// Audio
-   "pulseaudio": {
-        "format": "{icon} |",
-        "format-alt": "{volume} {icon}",
-        "format-alt-click": "click-right",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "scroll-step": 10,
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "pavucontrol",
-        "tooltip": false
+        "format": "{total} GiB"
     },
 
 // Notification
@@ -156,4 +116,180 @@
 	"on-click-right": "swaync-client -d -sw",
 	"escape": true
    }
-}
+},
+
+
+
+
+//
+//________________________________________________________________
+// Second Monitor side
+//
+{
+    "output": "HDMI-A-1",
+
+//
+//________________________________________________________________
+// Position
+//
+
+    "layer": "top",
+    "position": "left",
+    //"height": 1,
+    // "width": 1280, // Waybar width
+    // "gtk-layer-shell": "false",
+    
+
+//
+//________________________________________________________________
+// Layout
+//
+
+    "modules-left": ["tray"],
+    "modules-center": [],
+    "modules-right": ["temperature", "pulseaudio", "custom/layout", "custom/zypper"],
+    
+
+//
+//________________________________________________________________
+// Modules 
+//
+   
+// Zypper pdates available 
+    "custom/zypper": {
+        "format": " {} up",
+        "interval": 18000,
+        "exec": "zypper lu | grep 'v |' | wc -l; echo 'packages to update'",
+        "exec-if": "exit 0",
+        "on-click": "exec alacritty -e sudo sh -c 'zypper ref; zypper dup && flatpak update && distrobox-update --all; pkill -SIGRTMIN+8 waybar'",
+        "signal": 8
+    },
+
+// Tray
+   "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+
+// Temperature
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        // "format-critical": "{temperatureC}°C",
+        "format": "{temperatureC}°C",
+	"critical-threshold": 65,
+	"interval": 20    
+    },
+
+// Audio
+   "pulseaudio": {
+        "format": "{icon}",
+        "format-alt": "{volume} {icon}",
+        "format-alt-click": "click-right",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 10,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "tooltip": false
+    },
+},
+
+
+
+
+//
+//________________________________________________________________
+// Second Monitor bottom
+//
+{
+    "output": "HDMI-A-1",
+
+
+//
+//
+//________________________________________________________________
+// Position
+//
+
+    "layer": "top",
+    "position": "bottom",
+    //"height": 1,
+    // "width": 1280, // Waybar width
+    // "gtk-layer-shell": "false",
+    
+
+//
+//________________________________________________________________
+// Layout
+//
+
+    "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode"],
+    "modules-center": [],
+    "modules-right": ["cpu", "memory", "clock"],
+    
+
+//
+//________________________________________________________________
+// Modules 
+//
+ 
+// Workspaces
+    "sway/workspaces": {
+        "all-outputs": false,
+        "disable-scroll": false,
+        "format": "{index}",
+    },
+
+// Sway-Mode
+    "sway/mode": {
+        "format": " {}"
+    },
+ 
+// Sway Scratchpad
+    "custom/scratchpad": {
+        "format-text": "{}",
+        "return-type": "json",
+        "interval": 3,
+        "exec": "/usr/share/openSUSEway/helpers/scratchpad-indicator.sh 2> /dev/null",
+        "exec-if": "exit 0",
+        "on-click": "swaymsg 'scratchpad show'",
+        "on-click-right": "swaymsg 'move scratchpad'"
+    },
+  
+// Clock
+    "clock": {
+        "timezone": "Germany/Berlin",
+        "format": "{:20%y-%m-%Y %H:%M}",
+        "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
+        "today-format": "<span color='#21a4df'><b><u>{}</u></b></span>",
+        "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",
+        "format-calendar-weeks": "<span color='#73ba25'><b>{}</b></span>",
+        "format-calendar-weekdays": "<span color='#21a4df'><b>{}</b></span>",
+        "interval": 10
+    },
+
+// CPU
+    "cpu": {
+        "format": "{usage}%",
+        "tooltip": false,
+	"interval": 10,
+	"states": {
+	    "degraded": 75,
+	    "critical": 90
+	}
+    },
+
+// Memory
+    "memory": {
+        "format": "{total} GiB"
+    },
+}]

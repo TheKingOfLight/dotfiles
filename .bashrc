@@ -23,11 +23,13 @@ alias svim="sudo vim"
 alias ls="ls --color=auto"
 alias ls.="ls -d .* --color=auto"
 
-# zypper/yast
+# zypper/flatpak/yast
 alias zypper="sudo zypper"
 alias appinfo="\zypper info"
 alias appsearch="\zypper search"
 alias update="sudo \zypper ref && sudo \zypper dup && flatpak update && distrobox-upgrade --all"
+
+alias flatpak="flatpak --user"
 
 alias yast="su -c 'yast --qt'"
 
