@@ -27,7 +27,7 @@ alias ls.="ls -d .* --color=auto"
 alias zypper="sudo zypper"
 alias appinfo="\zypper info"
 alias appsearch="\zypper search"
-alias update="sudo \zypper ref && sudo \zypper dup && flatpak update && distrobox-upgrade --all"
+alias update="sudo \zypper ref && sudo \zypper dup ; flatpak update ; distrobox-upgrade --all"
 
 alias flatpak="flatpak --user"
 

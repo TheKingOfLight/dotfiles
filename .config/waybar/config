@@ -96,7 +96,8 @@
 
 // Memory
     "memory": {
-        "format": "{total} GiB"
+        "format": "{used} GiB",
+	"interval": 10
     },
 
 // Notification
@@ -161,7 +162,7 @@
         "interval": 18000,
         "exec": "zypper lu | grep 'v |' | wc -l; echo 'packages to update'",
         "exec-if": "exit 0",
-        "on-click": "exec alacritty -e sudo sh -c 'zypper ref; zypper dup && flatpak update && distrobox-update --all; pkill -SIGRTMIN+8 waybar'",
+        "on-click": "exec alacritty -e sudo sh -c 'zypper ref && zypper dup ; flatpak update ; distrobox-update --all; pkill -SIGRTMIN+8 waybar'",
         "signal": 8
     },
 
@@ -290,6 +291,7 @@
 
 // Memory
     "memory": {
-        "format": "{total} GiB"
+        "format": "{used} GiB / {total} GiB",
+	"interval": 10
     },
 }]

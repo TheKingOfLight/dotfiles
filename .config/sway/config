@@ -48,12 +48,10 @@ bindsym $mod+d exec $menu
 # Define Theme and Bar design
 set $theme 'theme-aqua.conf'
 
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/wallpapers/default-1920x1080.jpg fill
-
 # Start the bar
-bar swaybar_command waybar
-
+bar {
+	swaybar_command waybar
+}
 
 #
 #________________________________________________________________
@@ -75,7 +73,7 @@ include $theme
 # Output
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-include display_linux-pc.conf
+include display/default.conf
 
 # Input
 # You can get the names of your inputs by running: swaymsg -t get_inputs
