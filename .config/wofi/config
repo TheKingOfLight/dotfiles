@@ -4,5 +4,5 @@ insensitive=true
 mode=drun
 allow_images=true
 image_size=18
-style=/home/$USER/.config/wofi/Mint-Y-Aqua.css
+style=$HOME/.config/wofi/Mint-Y-Aqua.css
 

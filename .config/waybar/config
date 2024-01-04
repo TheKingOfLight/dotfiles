@@ -74,7 +74,7 @@
 // Clock
     "clock": {
         "timezone": "Germany/Berlin",
-        "format": "{:20%y-%m-%Y %H:%M}",
+        "format": "{:20%y-%m-%d %H:%M}",
         "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
         "today-format": "<span color='#21a4df'><b><u>{}</u></b></span>",
         "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",
@@ -158,11 +158,11 @@
    
 // Zypper pdates available 
     "custom/zypper": {
-        "format": " {} up",
+        "format": "{} up",
         "interval": 18000,
         "exec": "zypper lu | grep 'v |' | wc -l; echo 'packages to update'",
         "exec-if": "exit 0",
-        "on-click": "exec alacritty -e sudo sh -c 'zypper ref && zypper dup ; flatpak update ; distrobox-update --all; pkill -SIGRTMIN+8 waybar'",
+        "on-click": "/home/light/.local/bin/update.sh",
         "signal": 8
     },
 
@@ -174,12 +174,12 @@
 
 // Temperature
     "temperature": {
-        // "thermal-zone": 2,
+        // "thermal-zone": 1,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         // "format-critical": "{temperatureC}°C",
         "format": "{temperatureC}°C",
 	"critical-threshold": 65,
-	"interval": 20    
+	"interval": 10    
     },
 
 // Audio
@@ -269,7 +269,7 @@
 // Clock
     "clock": {
         "timezone": "Germany/Berlin",
-        "format": "{:20%y-%m-%Y %H:%M}",
+        "format": "{:20%y-%m-%d %H:%M}",
         "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
         "today-format": "<span color='#21a4df'><b><u>{}</u></b></span>",
         "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",

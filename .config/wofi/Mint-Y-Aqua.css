@@ -42,13 +42,13 @@ window {
     border-style: solid;
     border-color: #1F9EDE;
     border-radius: 0px;
-    background-color: var(--background);
+    background-color: #383838;
 }
 
 #outer-box {
     margin: 5px;
     padding: 0px;
-    background-color: var(--background);
+    background-color: #383838;
 }
 
 #input {
@@ -58,8 +58,8 @@ window {
     border-radius: 0px;
     border-color: var(--separatorcolor);
     border-style: none none dashed none;
-    color: var(--text-color);
-    background-color: var(--background);
+    color: #f2f2f2;
+    background-color: #383838;
     font-size: 18px;
 }
 
@@ -71,8 +71,8 @@ window {
 
 #inner-box {
     margin: 0px;
-    color: var(--text-color);
-    background-color: var(--background);
+    color: #f2f2f2;
+    background-color: #383838;
 }
 
 #img {
@@ -81,7 +81,7 @@ window {
 
 #text {
     padding: 0px;
-    color: var(text-color);
+    color: #f2f2f2;
 }
 
 #scroll label {
