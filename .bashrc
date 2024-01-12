@@ -26,12 +26,17 @@ alias ls.="ls -d .* --color=auto"
 # zypper/flatpak/yast
 alias zypper="sudo zypper"
 alias appinfo="\zypper info"
+alias appin="appinfo"
 alias appsearch="\zypper search"
-alias update="sudo \zypper ref && sudo \zypper dup ; flatpak update ; distrobox-upgrade --all"
+alias appse="appsearch"
+alias update=".local/bin/update.sh"
 
 alias flatpak="flatpak --user"
 
 alias yast="su -c 'yast --qt'"
+
+# additional
+alias pokete="$HOME/.local/bin/start-pokete.sh"
 
 
 # default
