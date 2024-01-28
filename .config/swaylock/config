@@ -1,0 +1,8 @@
+show-failed-attempts
+daemonize
+show-keyboard-layout
+indicator-caps-lock
+
+color=000000
+key-hl-color=1F9EDE
+ring-color=125B80
