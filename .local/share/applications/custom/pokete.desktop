@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pokete
+Path=/home/light/.local/bin/pokete
+Comment=A terminal based Pokemon clone, based on the scrap engine.
+Exec=/home/light/.local/bin/start-pokete.sh
+Icon=pokete
+Terminal=false
+StartupNotify=false
+Categories=Game;
+X-Desktop-File-Install-Version=0.9.1
