@@ -5,11 +5,15 @@
 #
 # Sway main config file
 # Setting up Sway and loading required configs
-# vers. 0.0.1
+# vers. 0.0.2
 #
 #
 # Needs config:
+#       autostart.conf
 #	keybinding.conf
+#       themes/$theme.conf
+#       idle/idle.conf
+#       display/default.conf
 # 
 # Place this to ~/.config/sway/config
 # Place required configs in ~/.config/sway/
@@ -31,10 +35,13 @@
 # MODE KEY
 set $mod Mod4
 
+# Define Theme and Bar design
+set $theme 'mint-y-aqua'
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-#set $menu dmenu_path | dmenu | xargs swaymsg exec --
+#  set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # it is set in config.d/50-openSUSE.conf
 set $menu wofi --conf=$HOME/.config/wofi/config  --style=$HOME/.config/wofi/Mint-Y-Aqua.css 
 bindsym $mod+d exec $menu
@@ -45,13 +52,12 @@ bindsym $mod+d exec $menu
 # Theming
 #
 
-# Define Theme and Bar design
-set $theme 'theme-aqua.conf'
-
 # Start the bar
 bar {
-	swaybar_command waybar
+	swaybar_command waybar  
+# --style $HOME/.config/sway/themes/style.css
 }
+
 
 #
 #________________________________________________________________
@@ -62,7 +68,10 @@ bar {
 include keybinding.conf
 
 # Importing the specified Themes
-include $theme
+include themes/theme-$theme.conf
+
+# Import the idle configuration
+include idle/idle.conf
 
 
 #
@@ -98,34 +107,6 @@ input "type:keyboard" {
 
 #
 #________________________________________________________________
-# Idle configuration
-#
-
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-#
-
-
-exec swayidle -w \
-	timeout 300 'swaylock' \
-	timeout 600 'swaymsg "output * dpms off"' \
-	resume 'swaymsg "output * dpms on"' \
-	before-sleep 'swaylock' \
-	before-sleep 'playerctl pause' \
-
-# exec swayidle -w \
-#	timeout 300 'swaylock' \
-#	timeout 600 'swaymsg "output * dpms off"' \
-#	timeout 3600 'systemctl suspend' \
-#	resume 'swaymsg "output * dpms on"' \
-#	before-sleep 'swaylock' \
-#	before-sleep 'playerctl pause' \
-
-
-#
-#________________________________________________________________
 # Technical Setup
 #
 
@@ -147,3 +128,6 @@ exec_always {
 }
 
 exec /usr/libexec/polkit-gnome-authentication-agent-1
+
+# Autostart Programms
+include autostart.conf

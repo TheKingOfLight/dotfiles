@@ -162,7 +162,7 @@
         "interval": 18000,
         "exec": "zypper lu | grep 'v |' | wc -l; echo 'packages to update'",
         "exec-if": "exit 0",
-        "on-click": "/home/light/.local/bin/update.sh",
+        "on-click": "alacritty --hold -e $HOME/.local/bin/update.sh",
         "signal": 8
     },
 

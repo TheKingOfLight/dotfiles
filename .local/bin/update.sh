@@ -11,6 +11,8 @@ RA='\e[0m'
 # Distroboxe names to upgrade
 distrobox_names=('tumbleweed')
 
+# Initialize success status
+success=true
 
 # Function to update with zypper
 zypper_update() {
@@ -28,25 +30,26 @@ zypper_update() {
 
 # Function to update distroboxes
 function distrobox_update() {
-    local success=true
+    local box_success=true
     for box in "${@}"; do
         if ! distrobox upgrade "$box"; then
-            success=false
+            box_success=false
             echo -e "${BLUE}_________________________________${RA}"
             echo -e "${CYAN}Failed to update ${RED}$box${RA}"
             echo -e "${BLUE}_________________________________${RA}\n\n"
         fi
     done
+    $box_success || exit 1
 }
 
 # Function to update local flatpaks
 function user_flatpak_update() {
-        flatpak --user update
+        flatpak --user update || success=false
 }
 
 # Function to update system flatpaks
 function system_flatpak_update() {
-        flatpak --system update
+        flatpak --system update || success=false
 }
 
 # Function to update waybar
@@ -62,34 +65,40 @@ function print_seperator() {
 
 
 # Execute Updates
-if [[ $(readlink -f /proc/$(ps -o ppid:1= -p $$)/exe) != $(readlink -f "$SHELL") ]]; then
-    	# not a shell
-    	export -f zypper_update
-    export -f distrobox_update
-    export -f user_flatpak_update
-    export -f print_seperator
-    export -f update_waybar
+print_seperator 'zypper'
+sudo bash -c "$(declare -f zypper_update); zypper_update"
 
-    export RED
-    export CYAN
-    export BLUE
-    export BLINK
-    export RA
+print_seperator 'distrobox'
+distrobox_update "${distrobox_names[@]}"
 
-    alacritty -e sudo bash -c "export RED='$RED' CYAN='$CYAN' BLUE='$BLUE' BLINK='$BLINK' RA='$RA';
-        $(declare -f zypper_update); $(declare -f print_seperator); $(declare -f update_waybar);
-        print_seperator 'zypper'; zypper_update; update_waybar; read -p 'Press a button to close'"
-	alacritty --hold -e sh -c "print_seperator 'distrobox'; distrobox_update ${distrobox_names[@]}; read -p 'Press a button to close'"
-	alacritty -e sh -c 'print_seperator "flatpak"; user_flatpak_update; read -p "Press a button to close"'
-else
-	# in a shell
+print_seperator 'flatpak'
+user_flatpak_update
+
+# Exit with status 1 only if all updates successfull
+$success || exit 1
+
+
+# Execute Updates
+#if [[ $(readlink -f /proc/$(ps -o ppid:1= -p $$)/exe) != $(readlink -f "$SHELL") ]]; then
+#    	# not a shell
+#    export -f zypper_update
+#    export -f distrobox_update
+#    export -f user_flatpak_update
+#    export -f print_seperator
+#    export -f update_waybar
+#
+#    export RED
+#    export CYAN
+#    export BLUE
+#    export BLINK
+#    export RA
+#
+#    alacritty -e sudo bash -c "export RED='$RED' CYAN='$CYAN' BLUE='$BLUE' BLINK='$BLINK' RA='$RA';
+#        $(declare -f zypper_update); $(declare -f print_seperator); $(declare -f update_waybar);
+#        print_seperator 'zypper'; zypper_update; update_waybar; read -p 'Press a button to close'"
+#	alacritty --hold -e sh -c "print_seperator 'distrobox'; distrobox_update ${distrobox_names[@]}; read -p 'Press a button to close'"
+#	alacritty -e sh -c 'print_seperator "flatpak"; user_flatpak_update; read -p "Press a button to close"'
+#else
+#	# in a shell
         
-        print_seperator "zypper" 
-        sudo bash -c "$(declare -f zypper_update); zypper_update"
-        
-        print_seperator "distrobox"
-        distrobox_update "${distrobox_names[@]}"
 
-        print_seperator "flatpak"
-        user_flatpak_update
-fi
