@@ -148,7 +148,7 @@
 
     "modules-left": ["tray"],
     "modules-center": [],
-    "modules-right": ["temperature", "pulseaudio", "custom/layout", "custom/zypper"],
+    "modules-right": ["privacy", "pulseaudio", "custom/layout", "custom/zypper"],
     
 
 //
@@ -172,16 +172,6 @@
         "spacing": 10
     },
 
-// Temperature
-    "temperature": {
-        // "thermal-zone": 1,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        // "format-critical": "{temperatureC}°C",
-        "format": "{temperatureC}°C",
-	"critical-threshold": 65,
-	"interval": 10    
-    },
-
 // Audio
    "pulseaudio": {
         "format": "{icon}",
@@ -201,6 +191,30 @@
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
         "tooltip": false
+    },
+
+// Screencapture and Audio
+    "privacy": {
+	"icon-spacing": 4,
+	"icon-size": 18,
+	"transition-duration": 250,
+	"modules": [
+	    {
+	        "type": "screenshare",
+	        "tooltip": true,
+	        "tooltip-icon-size": 24
+	    },
+	    {
+	        "type": "audio-out",
+		"tooltip": true,
+		"tooltip-icon-size": 24
+	    },
+	    {
+		"type": "audio-in",
+		"tooltip": true,
+		"tooltip-icon-size": 24
+	    }
+	]
     },
 },
 
@@ -235,7 +249,7 @@
 
     "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode"],
     "modules-center": [],
-    "modules-right": ["cpu", "memory", "clock"],
+    "modules-right": ["cpu","temperature#gpu", "temperature#cpu",  "memory", "clock"],
     
 
 //
@@ -287,6 +301,28 @@
 	    "degraded": 75,
 	    "critical": 90
 	}
+    },
+
+// CPU Temperature
+    "temperature#cpu": {
+        "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        // "format-critical": "{temperatureC}°C",
+        // "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input",
+        "format": "{temperatureC}°C",
+	"critical-threshold": 65,
+	"interval": 10    
+    },
+
+// GPU Temperature
+    "temperature#gpu": {
+        "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp2_input",
+        // "format-critical": "{temperatureC}°C",
+        // "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input",
+        "format": "{temperatureC}°C",
+	"critical-threshold": 80,
+	"interval": 10    
     },
 
 // Memory

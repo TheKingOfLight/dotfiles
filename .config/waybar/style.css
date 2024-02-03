@@ -118,6 +118,21 @@ window#waybar.solo {
     border-right: 1px solid #FFFFFF;
 }
 
+/* Temperature Module */
+#temperature.gpu{
+    margin: 0px 0px 0px 0px;
+    padding-right: 4px;
+    padding-left: 4px;
+    border-right: 0px solid #FFFFFF;
+}
+#temperature.cpu{
+    margin: 0px 0px 0px 0px;
+    padding-right: 4px;
+    padding-left: 4px;
+    border-right: 1px solid #FFFFFF;
+}
+
+
 
 #notification {
     margin: 0px 0px 0px 0px;
