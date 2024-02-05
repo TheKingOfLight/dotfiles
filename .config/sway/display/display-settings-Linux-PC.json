@@ -1,0 +1,40 @@
+{
+  "default": {
+    "DP-1": {
+      "MODE": "1920x1080@60Hz",
+      "POSITION": "1920 0",
+      "SCALE": "1",
+      "SCALE_FILTER": "smart",
+      "BACKGROUND": "$HOME/.local/share/backgrounds/desy--plasma-accelerator.jpg fill #20A3E6",
+      "TRANSFORM": "normal",
+      "RENDER_TIME": "off",
+      "SYNC": "on",
+      "BIT_DEPTH": "8",
+      "ENABLE": "enable"
+    },
+    "HDMI-A-1": {
+      "MODE": "1920x1080@60Hz",
+      "POSITION": "0 0",
+      "SCALE": "1",
+      "SCALE_FILTER": "smart",
+      "BACKGROUND": "$HOME/.local/share/backgrounds/caspar-david-friedrich--der-mönch-am-meer.jpg fill #20A3E6",
+      "TRANSFORM": "normal",
+      "RENDER_TIME": "off",
+      "SYNC": "off",
+      "BIT_DEPTH": "8",
+      "ENABLE": "enable"
+    }
+  },
+  "gaming": {
+    "DP-1": {
+      "MODE": "1920x1080@120.043Hz",
+      "BACKGROUND": "$HOME/.local/share/backgrounds/hells-paradise--yamada-fire-with-sword.jpg fill #FF0000",
+      "SYNC": "on"
+    }
+  },
+  "main_only": {
+    "HDMI-A-1": {
+      "ENABLE": "disable"
+    }
+  }
+}

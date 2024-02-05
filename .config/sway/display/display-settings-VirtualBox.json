@@ -1,0 +1,16 @@
+{
+    "default": {
+        "Virtual-1": {
+            "MODE": "1920x1080@60Hz",
+            "POSITION": "1920 0",
+            "SCALE": "1",
+            "SCALE_FILTER": "smart",
+            "BACKGROUND": "#20A3E6",
+            "TRANSFORM": "normal",
+            "RENDER_TIME": "off",
+            "SYNC": "off",
+            "BIT_DEPTH": "8",
+            "ENABLE": "enable"
+        }
+    }
+}
