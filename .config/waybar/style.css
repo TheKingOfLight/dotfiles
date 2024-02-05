@@ -106,7 +106,7 @@ window#waybar.solo {
  * Modules
 */
 
-/* General Modules */
+/* Horizontal Modules */
 #cpu, 
 #memory, 
 #idle_inhibitor, 
@@ -116,6 +116,27 @@ window#waybar.solo {
     padding-right: 4px;
     padding-left: 4px;
     border-right: 1px solid #FFFFFF;
+}
+
+/* Vertikal Modules */
+#gamemode,
+#privacy,
+#pulseaudio,
+#custom-zypper{
+    margin: 0px 0px 0px 0px;
+    padding-top: 1px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+/* Tray Module */
+#tray{
+    margin: 0px 0px 0px 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 /* Temperature Module */

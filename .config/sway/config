@@ -82,7 +82,19 @@ include idle/idle.conf
 # Output
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-include display/default.conf
+exec_always python3 .config/sway/display/display-setting.py default
+
+# Define display output names
+    set $disp1 "DP-1"
+    set $disp2 "HDMI-A-1"
+
+# Default display outputs for workspaces with fallback to disp1
+    workspace 1 output $disp1
+    workspace 2 output $disp1
+    workspace 3 output $disp1
+    workspace 7 output $disp2
+    workspace 8 output $disp2
+    workspace 9 output $disp2
 
 # Input
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -120,7 +132,7 @@ exec_always {
     systemctl --user import-environment
     gsettings set org.gnome.desktop.interface gtk-theme 'Mint-Y-Dark-Aqua'
     gsettings set org.gnome.desktop.interface icon-theme 'Mint-Y-Aqua'
-    gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+    gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Original-Classic'
     test -e $SWAYSOCK.wob || mkfifo $SWAYSOCK.wob
     tail -f $SWAYSOCK.wob | $wob
 #    swaync --style /etc/sway/swaync/style.css --config /etc/sway/swaync/config.json
