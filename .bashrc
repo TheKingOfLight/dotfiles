@@ -1,17 +1,24 @@
-# Sample .bashrc for SUSE Linux
-# Copyright (c) SUSE Software Solutions Germany GmbH
-
-# There are 3 different types of shells in bash: the login shell, normal shell
-# and interactive shell. Login shells read ~/.profile and interactive shells
-# read ~/.bashrc; in our setup, /etc/profile sources ~/.bashrc - thus all
-# settings made here will also take effect in a login shell.
 #
-# NOTE: It is recommended to make language settings in ~/.profile rather than
-# here, since multilingual X sessions would not work properly if LANG is over-
-# ridden in every subshell.
+#________________________________________________________________
+#________________________________________________________________
+#
+#.bashrc
+# bash main config file
+# Vers. 0.0.1
+# Author: King of the light
+# License: GNU General Public License v3.0
+#
+#________________________________________________________________
+#________________________________________________________________
+#
 
-# ______________
-# custom alias
+
+
+
+#
+#________________________________________________________________
+# Custom alias
+#
 
 # general
 alias config='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
@@ -40,5 +47,10 @@ alias yast="su -c 'yast --qt'"
 alias pokete="$HOME/.local/bin/start-pokete.sh"
 
 
-# default
+#
+#________________________________________________________________
+# Additional settings
+#
+
+# import alias from file
 test -s ~/.alias && . ~/.alias || true

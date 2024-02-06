@@ -1,6 +1,15 @@
 #!/usr/bin/python3
 
-# idle_warning.py
+"""
+Displays Waring bevor locking/turning off screen
+
+Version: 0.3
+Author: King of the light
+License: GNU General Public License v3.0
+License URL: https://www.gnu.org/licenses/gpl-3.0.html
+! currently not used !
+"""
+
 import time
 import signal
 import subprocess

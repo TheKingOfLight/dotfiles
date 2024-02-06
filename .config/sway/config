@@ -1,12 +1,13 @@
 #
 #________________________________________________________________
-
 #________________________________________________________________
 #
 # Sway main config file
 # Setting up Sway and loading required configs
-# vers. 0.0.2
-#
+# Vers. 0.0.3
+# Author: King of the light
+# License: Unlicense
+# 
 #
 # Needs config:
 #       autostart.conf

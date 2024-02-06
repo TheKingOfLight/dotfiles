@@ -3,7 +3,7 @@
 """
 Apply display settings using swaymsg based on a JSON configuration file.
 
-Version: 0.2
+Version: 0.3
 Author: King of the light
 License: GNU General Public License v3.0
 License URL: https://www.gnu.org/licenses/gpl-3.0.html

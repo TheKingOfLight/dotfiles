@@ -1,5 +1,26 @@
 #!/bin/bash
 
+#
+#________________________________________________________________
+#________________________________________________________________
+#
+# Update a openSUSE system
+# Update all desired components with nice outputs in the terminal
+# Vers. 0.0.3
+# Author: King of the light
+# License: GNU General Public License v3.0
+# 
+# Fearure:
+#       zypper update
+#	List of availible updates
+#       Show processed using deleated files
+#       flatpack update (user and system)
+#       Update list of distroboxes
+#       Send sygnal to waybar to refresh update number
+#
+#________________________________________________________________
+#________________________________________________________________
+#
 
 # Define color variables for formatting
 RED='\e[31m'
