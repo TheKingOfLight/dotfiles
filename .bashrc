@@ -19,9 +19,10 @@ alias config='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 # vim
 alias svim="sudo vim"
 
-# ls
+# navigation
 alias ls="ls --color=auto"
 alias ls.="ls -d .* --color=auto"
+alias cd.="cd ~"
 
 # zypper/flatpak/yast
 alias zypper="sudo zypper"

@@ -3,7 +3,7 @@
 """
 Apply display settings using swaymsg based on a JSON configuration file.
 
-Version: 0.1
+Version: 0.2
 Author: King of the light
 License: GNU General Public License v3.0
 License URL: https://www.gnu.org/licenses/gpl-3.0.html
@@ -13,35 +13,19 @@ import sys
 import json
 import subprocess
 import os
+import argparse
+import re
 
 
-def print_help():
-    print(f"Usage: {sys.argv[0]} <mode> [options]")
-    print("Options:")
-    print("  -c <json_file>, --config=<json_file>  Specify a custom JSON configuration file.")
-    print("  -m, --mode                             List available modes in the curent json file.")
-    print("  -h, --help                             Display this help message.")
-
-
-def determine_config_path():
+def determine_config_path(custom_path):
     """
     Determine the path to the JSON configuration file.
 
     Default: display-settings-{hostname}.json
     Can be specified by the argument -c or --config
     """
-    if '-c' in sys.argv or '--config' in sys.argv:
-        import json
-        try:
-            index = sys.argv.index('-c')
-            custom_config_file = sys.argv[index + 1]
-            return custom_config_file
-        except IndexError:
-            print("Error: No configuration file provided with -c option.")
-            sys.exit(1)
-        except ValueError:
-            print("Error: Invalid usage of -c option.")
-            sys.exit(1)
+    if custom_path:
+        return custom_path
     else:
         script_directory = os.path.dirname(os.path.abspath(__file__))
         hostname = os.uname().nodename
@@ -65,8 +49,33 @@ def load_json(json_file):
     return data
 
 
+def check_config_format(data):
+    """
+    Check the format of the JSON data.
+    Ensure there is a mode called "default" with required parameters.
+    This ensures that in swaymsg specifed settings are available.
+    """
+    if 'default' not in data:
+        print("Error: 'default' mode not found in the configuration file.")
+        sys.exit(1)
+
+    default_settings = data['default']
+    for mode, mode_settings in data.items():
+        for display, settings in mode_settings.items():
+            # Check if display is a string without special characters and spaces
+            if not isinstance(display, str) or not re.match(r'^[a-zA-Z0-9_-]+$', display):
+                print(
+                    f"Error: Display '{display}' in mode '{mode}' is invalid. Display names must be strings without special characters or spaces.")
+                sys.exit(1)
+            # Check if settings are strings and not lists
+            for setting_name, setting_value in settings.items():
+                if not isinstance(setting_value, str):
+                    print(
+                        f"Error: Setting '{setting_name}' for display '{display}' in mode '{mode}' must be a string.")
+                    sys.exit(1)
+
+
 def execute_swaymsg(display, settings):
-    import subprocess
     command = [
         'swaymsg',
         'output', display, 'mode', settings['MODE'], ',',
@@ -116,25 +125,87 @@ def apply_settings(mode, data):
     sys.exit(max(return_codes))
 
 
-def main():
-    if '-h' in sys.argv or '--help' in sys.argv or len(sys.argv) == 1:
-        print_help()
-        if len(sys.argv) == 0:
-            sys.exit(1)
-        else:
-            sys.exit(0)
-
-    config_file = determine_config_path()
+def list_available_modes(config_file):
     config = load_json(config_file)
+    print("Available modes:")
+    for mode in config.keys():
+        print(f"  - {mode}")
+    sys.exit(0)
 
-    if '-m' in sys.argv or '--mode' in sys.argv:
-        print("Available modes:")
-        for mode in config.keys():
-            print(f"  - {mode}")
+
+def handle_arguments(parser, args):
+    """
+    Check the arguments for errors.
+    Print the desired message and exit for "overriding" Arguments.
+    """
+    exclude_list = [args.mode, args.mode_list,
+                    args.check_settings, args.license]
+
+    if sum(bool(x) for x in exclude_list) > 1:
+        parser.error(
+            "Argument error: Conflicting arguments. Please consider that some arguments exclude each other.")
+        parser.print_help()
+
+    if sum(bool(x) for x in exclude_list) == 0:
+        parser.error(
+            "Argument error: No mode provided. Please choose a mode or another argument.")
+        parser.print_help()
+
+    if args.license:
+        print("Author: King of the light")
+        print("License: GNU General Public License v3.0")
+        print("License URL: https://www.gnu.org/licenses/gpl-3.0.html")
         sys.exit(0)
 
-    mode = sys.argv[1]
-    apply_settings(mode, config)
+    if args.config:
+        config_file = args.config
+    else:
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+        hostname = os.uname().nodename
+        config_file = os.path.join(
+            script_directory, f"display-settings-{hostname}.json")
+    args.config = config_file
+
+    if args.check_settings:
+        config = load_json(config_file)
+        check_config_format(config)
+        print("JSON settings check passed successfully.")
+        sys.exit(0)
+
+    if args.mode_list:
+        list_available_modes(config_file)
+        sys.exit(0)
+
+    return args
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        prog=f'{os.path.basename(__file__)}',
+        description='Apply display settings using swaymsg based on a JSON configuration file.')
+    parser.add_argument(
+        'mode', nargs='?', help='Specify the mode to apply from the configuration file')
+    parser.add_argument(
+        '-c', '--config', help='Specify a custom JSON configuration file.')
+    parser.add_argument('-m', '--mode-list', action='store_true',
+                        help='List available modes in the current json file.')
+    parser.add_argument('--check-settings', action='store_true',
+                        help='Check if JSON settings are correctly formatted.')
+    parser.add_argument('--version', action='version', version='%(prog)s 0.2')
+    parser.add_argument('--license', action='store_true',
+                        help='Display author, license, and license URL.')
+
+    args = handle_arguments(parser, parser.parse_args())
+
+    return args
+
+
+def main():
+    args = parse_args()
+
+    config = load_json(args.config)
+    check_config_format(config)
+    apply_settings(args.mode, config)
 
 
 main()
