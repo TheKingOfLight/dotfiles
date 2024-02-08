@@ -155,6 +155,11 @@ window#waybar.solo {
     border-right: 1px solid #FFFFFF;
 }
 
+/* Sway Mode */
+#mode{
+    font-family:   "pango:monospace";
+    font-size:     13px;
+}
 
 
 #notification {

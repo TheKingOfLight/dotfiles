@@ -93,6 +93,12 @@ exec_always python3 .config/sway/display/display-setting.py default
     set $disp2 "HDMI-A-1"
 
 # Default display outputs for workspaces with fallback to disp1
+    workspace 11 output $disp1
+    workspace 12 output $disp1
+    workspace 13 output $disp1
+    workspace 17 output $disp2
+    workspace 18 output $disp2
+    workspace 19 output $disp2
     workspace 1 output $disp1
     workspace 2 output $disp1
     workspace 3 output $disp1
