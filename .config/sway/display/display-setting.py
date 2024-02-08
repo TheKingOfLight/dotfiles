@@ -24,11 +24,13 @@ def determine_config_path(custom_path):
     Default: display-settings-{hostname}.json
     Can be specified by the argument -c or --config
     """
+
     if custom_path:
         return custom_path
     else:
         script_directory = os.path.dirname(os.path.abspath(__file__))
         hostname = os.uname().nodename
+
         return os.path.join(script_directory, f"display-settings-{hostname}.json")
 
 
@@ -46,6 +48,7 @@ def load_json(json_file):
         print(
             f"Error: Invalid JSON format in configuration file '{json_file}'.")
         sys.exit(1)
+
     return data
 
 
@@ -55,19 +58,21 @@ def check_config_format(data):
     Ensure there is a mode called "default" with required parameters.
     This ensures that in swaymsg specifed settings are available.
     """
+
     if 'default' not in data:
         print("Error: 'default' mode not found in the configuration file.")
         sys.exit(1)
 
-    default_settings = data['default']
     for mode, mode_settings in data.items():
         for display, settings in mode_settings.items():
             # Check if display is a string without special characters and spaces
+
             if not isinstance(display, str) or not re.match(r'^[a-zA-Z0-9_-]+$', display):
                 print(
                     f"Error: Display '{display}' in mode '{mode}' is invalid. Display names must be strings without special characters or spaces.")
                 sys.exit(1)
             # Check if settings are strings and not lists
+
             for setting_name, setting_value in settings.items():
                 if not isinstance(setting_value, str):
                     print(
@@ -90,10 +95,12 @@ def execute_swaymsg(display, settings):
         'output', display, settings['ENABLE']
     ]
     result = subprocess.run(command)
+
     if result.returncode != 0:
         print(
             f"Error executing swaymsg for display {display}. Return code: {result.returncode}")
         sys.exit(result.returncode)
+
     return (result.returncode)
 
 
@@ -110,7 +117,6 @@ def apply_settings(mode, data):
     else:
         print(f"Error: Mode '{mode}' not found in the configuration file.")
         print("Ether you specified a wrong mode or the configuration file is bad.")
-        print_help()
         sys.exit(1)
 
     return_codes = []
@@ -128,6 +134,7 @@ def apply_settings(mode, data):
 def list_available_modes(config_file):
     config = load_json(config_file)
     print("Available modes:")
+
     for mode in config.keys():
         print(f"  - {mode}")
     sys.exit(0)

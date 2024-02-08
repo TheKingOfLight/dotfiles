@@ -74,6 +74,9 @@ include themes/theme-$theme.conf
 # Import the idle configuration
 include idle/idle.conf
 
+# Import windows configuration (eg. Floting, ...)
+include windows.conf
+
 
 #
 #________________________________________________________________
@@ -123,24 +126,24 @@ input "type:keyboard" {
 # Technical Setup
 #
 
-# Does not work: overriding
-# include /etc/sway/config.d/*
-
-# Manual copy of fooder
-set $wob wob --config $HOME/.config/sway/wob/wob.ini 
+# Include config.d for setup
+# !ERROR!: overriding control
+# include config.d/*
 
 exec_always {
     systemctl --user import-environment
-    gsettings set org.gnome.desktop.interface gtk-theme 'Mint-Y-Dark-Aqua'
-    gsettings set org.gnome.desktop.interface icon-theme 'Mint-Y-Aqua'
-    gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Original-Classic'
     test -e $SWAYSOCK.wob || mkfifo $SWAYSOCK.wob
-    tail -f $SWAYSOCK.wob | $wob
-#    swaync --style /etc/sway/swaync/style.css --config /etc/sway/swaync/config.json
+    tail -f $SWAYSOCK.wob | wob
     swaync
 }
 
 exec /usr/libexec/polkit-gnome-authentication-agent-1
+
+
+# FIX FOR SHARING?
+# systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTO
+#exec exec hash dbus-update-activation-environment 2>/dev/null && \
+#     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_CURRENT_DESKTOP=sway
 
 # Autostart Programms
 include autostart.conf

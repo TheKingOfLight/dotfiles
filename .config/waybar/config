@@ -150,7 +150,7 @@
 
     "modules-left": ["tray"],
     "modules-center": [],
-    "modules-right": ["gamemode", "privacy", "pulseaudio", "custom/zypper"],
+    "modules-right": ["gamemode", "pulseaudio", "custom/zypper"],
     
 
 //
@@ -171,15 +171,15 @@
 // Tray
    "tray": {
         "icon-size": 15,
-        "spacing": 10
+        "spacing": 5
     },
 
 // Audio
    "pulseaudio": {
         "format": "{icon}",
-        "format-alt": "{volume} {icon}",
-        "format-alt-click": "click-right",
-        "format-muted": "",
+        "format-alt": "{volume}%",
+        "format-alt-click": "click-middle",
+        "format-muted": "X",
         "format-icons": {
             "headphones": "",
             "handsfree": "",
@@ -190,8 +190,8 @@
             "default": ["", "", ""]
         },
         "scroll-step": 10,
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "pavucontrol",
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "tooltip": false
     },
 
@@ -205,32 +205,35 @@
         "icon-spacing": 0,
         "icon-size": 5,
         "tooltip": true,
-        "tooltip-format": "Games running: {count}"
+        "tooltip-format": "Games running: {count}",
+        "interval": 10
     },
 
 // Screencapture and Audio
-    "privacy": {
-	"icon-spacing": 4,
-	"icon-size": 18,
-	"transition-duration": 250,
-	"modules": [
-	    {
-	        "type": "screenshare",
-	        "tooltip": true,
-	        "tooltip-icon-size": 24
-	    },
-	    {
-	        "type": "audio-out",
-		"tooltip": true,
-		"tooltip-icon-size": 24
-	    },
-	    {
-		"type": "audio-in",
-		"tooltip": true,
-		"tooltip-icon-size": 24
-	    }
-	]
-    },
+//    "privacy": {
+//	"icon-spacing": 4,
+//	"icon-size": 5,
+//	"transition-duration": 0,
+//        "interval": 10,
+//        "rotate": 90,
+//	"modules": [
+//	    {
+//	        "type": "screenshare",
+//	        "tooltip": true,
+//	        "tooltip-icon-size": 24
+//	    },
+//	    {
+//	        "type": "audio-out",
+//		"tooltip": true,
+//		"tooltip-icon-size": 24
+//	    },
+//	    {
+//		"type": "audio-in",
+//		"tooltip": true,
+//		"tooltip-icon-size": 24
+//	    }
+//	]
+//    },
 },
 
 

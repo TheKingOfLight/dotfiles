@@ -60,17 +60,19 @@ function distrobox_update() {
             echo -e "${BLUE}_________________________________${RA}\n\n"
         fi
     done
-    $box_success || exit 1
+    if ! $box_sucess; then
+        $sucess=false
+    fi
 }
 
 # Function to update local flatpaks
 function user_flatpak_update() {
-        flatpak --user update || success=false
+        flatpak --user update || $success=false
 }
 
 # Function to update system flatpaks
 function system_flatpak_update() {
-        flatpak --system update || success=false
+        flatpak --system update || $success=false
 }
 
 # Function to update waybar
@@ -95,8 +97,15 @@ distrobox_update "${distrobox_names[@]}"
 print_seperator 'flatpak'
 user_flatpak_update
 
-# Exit with status 1 only if all updates successfull
-$success || exit 1
+# Update Waybar
+update_waybar()
+
+# Exit with status 0 only if all updates successfull
+if $success; then
+        exit 0
+else
+        exit 1
+fi
 
 
 # Execute Updates
