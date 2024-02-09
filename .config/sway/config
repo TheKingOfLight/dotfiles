@@ -56,7 +56,7 @@ bindsym $mod+d exec $menu
 # Start the bar
 bar {
 	swaybar_command waybar  
-# --style $HOME/.config/sway/themes/style.css
+        # --style $HOME/.config/sway/themes/style.css
 }
 
 
@@ -106,6 +106,10 @@ exec_always python3 .config/sway/display/display-setting.py default
     workspace 8 output $disp2
     workspace 9 output $disp2
 
+# Start on default workspace
+workspace 1
+workspace 7
+
 # Input
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -137,19 +141,15 @@ input "type:keyboard" {
 # include config.d/*
 
 exec_always {
-    systemctl --user import-environment
+    systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+    hash dbus-update-activation-environment 2>/dev/null && \
+        dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_CURRENT_DESKTOP=sway
     test -e $SWAYSOCK.wob || mkfifo $SWAYSOCK.wob
     tail -f $SWAYSOCK.wob | wob
     swaync
 }
 
-exec /usr/libexec/polkit-gnome-authentication-agent-1
-
-
-# FIX FOR SHARING?
-# systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTO
-#exec exec hash dbus-update-activation-environment 2>/dev/null && \
-#     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_CURRENT_DESKTOP=sway
+exec /usr/libexec/polkit-kde-authentication-agent-1
 
 # Autostart Programms
 include autostart.conf
