@@ -82,17 +82,18 @@ def check_config_format(data):
 
 def execute_swaymsg(display, settings):
     command = [
-        'swaymsg',
-        'output', display, 'mode', settings['MODE'], ',',
-        'output', display, 'position', settings['POSITION'], ',',
-        'output', display, 'scale', settings['SCALE'], ',',
-        'output', display, 'scale_filter', settings['SCALE_FILTER'], ',',
-        'output', display, 'background', settings['BACKGROUND'], ',',
-        'output', display, 'transform', settings['TRANSFORM'], ',',
-        'output', display, 'max_render_time', settings['RENDER_TIME'], ',',
-        'output', display, 'adaptive_sync', settings['SYNC'], ',',
-        'output', display, 'render_bit_depth', settings['BIT_DEPTH'], ',',
-        'output', display, settings['ENABLE']
+        'swaymsg', 'output', display,
+
+        'mode', settings['MODE'],
+        'position', settings['POSITION'],
+        'scale', settings['SCALE'],
+        'scale_filter', settings['SCALE_FILTER'],
+        'background', settings['BACKGROUND'],
+        'transform', settings['TRANSFORM'],
+        'max_render_time', settings['RENDER_TIME'],
+        'adaptive_sync', settings['SYNC'],
+        'render_bit_depth', settings['BIT_DEPTH'],
+        settings['ENABLE']
     ]
     result = subprocess.run(command)
 
