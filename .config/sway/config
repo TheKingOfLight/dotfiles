@@ -11,10 +11,12 @@
 #
 # Needs config:
 #       autostart.conf
-#	keybinding.conf
+#       keybinding.conf
+#       windows.conf
 #       themes/$theme.conf
 #       idle/idle.conf
 #       display/default.conf
+#       themes/$THEME.conf
 # 
 # Place this to ~/.config/sway/config
 # Place required configs in ~/.config/sway/
