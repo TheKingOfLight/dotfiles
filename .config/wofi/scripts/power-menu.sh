@@ -12,7 +12,7 @@ case $selected in
   logout)
     swaymsg exit;;
   lock)
-    exec swaylock;;
+    exec bash -c 'swaylock';;
   suspend)
-    exec systemctl suspend;;
+    exec bash -c 'killall -s SIGUSR1 swayidle && killall -s SIGUSR1 swayidle && sleep 1 && killall -s SIGUSR1 swayidle';;
 esac
