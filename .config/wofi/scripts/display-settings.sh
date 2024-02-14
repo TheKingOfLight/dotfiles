@@ -6,7 +6,7 @@ selected=$(echo -e $entries|wofi --style $HOME/.config/wofi/Mint-Y-Aqua.css --dm
 
 case $selected in
   default)
-        exec sh .local/bin/display-setting.sh default;
+        exec python3 .config/sway/dispaly/display_setting.py default;;
   gaming)
-        exec sh .local/bin/display-setting.sh gaming;
+        exec python3 .config/sway/display/display_setting.py gaming;;
 esac

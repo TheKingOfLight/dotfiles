@@ -7,7 +7,7 @@
 # Vers. 0.0.3
 # Author: King of the light
 # License: Unlicense
-# 
+#
 #
 # Needs config:
 #       autostart.conf
@@ -17,10 +17,10 @@
 #       idle/idle.conf
 #       display/default.conf
 #       themes/$THEME.conf
-# 
+#
 # Place this to ~/.config/sway/config
 # Place required configs in ~/.config/sway/
-# 
+#
 # Read `man 5 sway` for a complete reference.
 #
 #________________________________________________________________
@@ -46,7 +46,7 @@ set $theme 'mint-y-aqua'
 # on the original workspace that the command was run on.
 #  set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # it is set in config.d/50-openSUSE.conf
-set $menu wofi --conf=$HOME/.config/wofi/config  --style=$HOME/.config/wofi/Mint-Y-Aqua.css 
+set $menu wofi --conf=$HOME/.config/wofi/config  --style=$HOME/.config/wofi/Mint-Y-Aqua.css
 bindsym $mod+d exec $menu
 
 
@@ -62,7 +62,7 @@ include themes/theme-$theme.conf
 
 # Start the bar
 bar {
-    swaybar_command waybar  
+    swaybar_command waybar
     # --style $HOME/.config/sway/themes/style.css
 }
 
@@ -88,12 +88,12 @@ include windows.conf
 #
 #________________________________________________________________
 # Hardware Setup
-# 
+#
 
 # Output
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-exec_always python3 .config/sway/display/display-setting.py default
+exec_always python3 .config/sway/display/display_setting.py default
 
 # Define display output names
     set $disp1 "DP-1"
@@ -123,7 +123,7 @@ workspace 7
 
 input "type:keyboard" {
     xkb_layout de
-    xkb_options caps:escape_shifted_capslock 
+    xkb_options caps:escape_shifted_capslock
     xkb_numlock enable
 }
 
