@@ -22,9 +22,11 @@
 
 # general
 alias config='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+alias neofetch='sh .local/bin/neofetch/print-neofetch.sh'
 
-# vim
+# vim/nvim
 alias svim="sudo vim"
+alias neovim="nvim"
 
 # navigation
 alias ls="ls --color=auto"

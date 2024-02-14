@@ -17,8 +17,17 @@
 
 #
 #________________________________________________________________
-# Additional settings
+# Imports
 #
 
 # Import alias from file
 test -s ~/.alias && . ~/.alias || true
+
+
+#
+#________________________________________________________________
+# Run !always! at startup
+#
+
+# Short neofetch (from alias --> cat)
+neofetch short
