@@ -57,6 +57,9 @@ au BufNewFile, BufRead *.py
 	\ set autoindent
 	\ set fileformat=unix
 
+:packadd doctest
+:packadd jedi-vim
+
 " ALE
 let g:ale_completion_enabled = 1
 set omnifunc=ale#completion#OmniFunc
@@ -67,8 +70,9 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_linters = {
-\   'python': ['bandit', 'cspell', 'flake8', 'jedils', 'mypy', 'prospector', 'pyflakes', 'pylint', 'pyre', 'refurb', 'ruff', 'vulture'],
+\   'python': ['bandit', 'cspell', 'flake8', 'jedils', 'prospector', 'pyflakes', 'pylint', 'pyre', 'refurb', 'ruff', 'vulture'],
 \}
+" removed mypy
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['add_blank_lines_for_python_control_statements',
@@ -83,3 +87,14 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_fix_on_save = 1
+
+
+
+" Vim-Test
+"let test#strategy = "neovim"
+"let test#python#runner = 'pyunit'
+" Runners available are 'pytest', 'nose', 'nose2', 'djangotest', 'djangonose', 'mamba', and Python's built-in unittest as 'pyunit'
+"
+"let test#strategy = "neovim"
+"let test#python#runner = 'pytest'
+"let test#pytest#options = "--doctest-modules"

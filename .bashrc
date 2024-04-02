@@ -31,3 +31,5 @@ test -s ~/.alias && . ~/.alias || true
 
 # Short neofetch (from alias --> cat)
 neofetch short
+
+[ -f "/home/light/.ghcup/env" ] && source "/home/light/.ghcup/env" # ghcup-env

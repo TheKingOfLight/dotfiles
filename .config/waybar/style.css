@@ -109,9 +109,9 @@ window#waybar.solo {
 */
 
 /* Horizontal Modules */
-#cpu, 
-#memory, 
-#idle_inhibitor, 
+#cpu,
+#memory,
+#idle_inhibitor,
 #custom-layout,
 #clock{
     margin: 0px 0px 0px 0px;
@@ -123,6 +123,8 @@ window#waybar.solo {
 /* Vertikal Modules */
 #gamemode,
 #privacy,
+#privacy.audio-in,
+#privacy.screenshare,
 #pulseaudio,
 #custom-zypper{
     margin: 0px 0px 0px 0px;
@@ -139,6 +141,15 @@ window#waybar.solo {
     padding-bottom: 0px;
     padding-right: 0px;
     padding-left: 0px;
+}
+
+/* Audio-Out center */
+#privacy.audio-out-m{
+    margin: 0px 0px 0px 0px;
+    padding-top: 1px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 3px;
 }
 
 /* Temperature Module */
@@ -162,7 +173,7 @@ window#waybar.solo {
 }
 
 
-#notification {
+#custom-notification {
     margin: 0px 0px 0px 0px;
     padding-left: 4px;
 }

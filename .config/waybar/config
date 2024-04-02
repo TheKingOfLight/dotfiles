@@ -31,9 +31,9 @@
     "layer": "top",
     "position": "bottom",
     "height": 8,
-    // "width": 1280, 
+    // "width": 1280,
     // "gtk-layer-shell": "false",
-    
+
 
 //
 //________________________________________________________________
@@ -43,13 +43,13 @@
     "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode"],
     "modules-center": [],
     "modules-right": ["cpu", "memory", "clock", "custom/notification"],
-    
+
 
 //
 //________________________________________________________________
-// Modules 
+// Modules
 //
- 
+
 // Workspaces
     "sway/workspaces": {
         "all-outputs": false,
@@ -61,7 +61,7 @@
     "sway/mode": {
         "format": " {}"
     },
- 
+
 // Sway Scratchpad
     "custom/scratchpad": {
         "format-text": "{}",
@@ -72,17 +72,17 @@
         "on-click": "swaymsg 'scratchpad show'",
         "on-click-right": "swaymsg 'move scratchpad'"
     },
-  
+
 // Clock
     "clock": {
         "timezone": "Germany/Berlin",
-        "format": "{:20%y-%m-%d %H:%M}",
-        "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
-        "today-format": "<span color='#21a4df'><b><u>{}</u></b></span>",
-        "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",
-        "format-calendar-weeks": "<span color='#73ba25'><b>{}</b></span>",
-        "format-calendar-weekdays": "<span color='#21a4df'><b>{}</b></span>",
-        "interval": 10
+        "format": "20{:%y-%m-%d %H:%M}",
+        "tooltip-format": "<span color='#ffffff'><big>{:%Y %B}</big></span>\n<span color='#ffffff'><tt><small>{calendar}</small></tt></span>",
+        "interval": 20,
+//        "today-format": "<span color='#21a4df'><b><u>{}</u></b></span>",
+//        "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",
+//        "format-calendar-weeks": "<span color='#73ba25'><b>{}</b></span>",
+//        "format-calendar-weekdays": "<span color='#21a4df'><b>{}</b></span>",
     },
 
 // CPU
@@ -99,7 +99,7 @@
 // Memory
     "memory": {
         "format": "{used} GiB",
-	"interval": 10
+	"interval": 20
     },
 
 // Notification
@@ -141,7 +141,7 @@
     //"height": 1,
     // "width": 1280, // Waybar width
     // "gtk-layer-shell": "false",
-    
+
 
 //
 //________________________________________________________________
@@ -149,16 +149,16 @@
 //
 
     "modules-left": ["tray"],
-    "modules-center": [],
+    "modules-center": ["privacy#screenshare", "privacy#audio-in"],
     "modules-right": ["gamemode", "pulseaudio", "custom/zypper"],
-    
+
 
 //
 //________________________________________________________________
-// Modules 
+// Modules
 //
-   
-// Zypper pdates available 
+
+// Zypper pdates available
     "custom/zypper": {
         "format": "{} up",
         "interval": 18000,
@@ -206,34 +206,46 @@
         "icon-size": 5,
         "tooltip": true,
         "tooltip-format": "Games running: {count}",
-        "interval": 10
+        "interval": 30
     },
 
-// Screencapture and Audio
-//    "privacy": {
-//	"icon-spacing": 4,
-//	"icon-size": 5,
-//	"transition-duration": 0,
-//        "interval": 10,
+// Privacy
+    // Audio Out
+    "privacy#audio-out-m": {
+	"icon-size": 10,
+	"transition-duration": 0,
+//        "interval": 30,
 //        "rotate": 90,
-//	"modules": [
-//	    {
-//	        "type": "screenshare",
-//	        "tooltip": true,
-//	        "tooltip-icon-size": 24
-//	    },
-//	    {
-//	        "type": "audio-out",
-//		"tooltip": true,
-//		"tooltip-icon-size": 24
-//	    },
-//	    {
-//		"type": "audio-in",
-//		"tooltip": true,
-//		"tooltip-icon-size": 24
-//	    }
-//	]
-//    },
+	"modules": [{
+	        "type": "audio-out",
+		"tooltip": true,
+		"tooltip-icon-size": 24
+	}]
+    },
+    // Audio In
+    "privacy#audio-in": {
+	"icon-size": 10,
+	"transition-duration": 0,
+//        "interval": 30,
+//        "rotate": 90,
+	"modules": [{
+		"type": "audio-in",
+		"tooltip": true,
+		"tooltip-icon-size": 24
+	}]
+    },
+    // Screenshare
+    "privacy#screenshare": {
+	"icon-size": 10,
+	"transition-duration": 0,
+//        "interval": 30,
+//        "rotate": 90,
+	"modules": [{
+	        "type": "screenshare",
+	        "tooltip": true,
+	        "tooltip-icon-size": 24
+	}]
+    },
 },
 
 
@@ -258,7 +270,7 @@
     //"height": 1,
     // "width": 1280, // Waybar width
     // "gtk-layer-shell": "false",
-    
+
 
 //
 //________________________________________________________________
@@ -268,13 +280,13 @@
     "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode"],
     "modules-center": [],
     "modules-right": ["cpu","temperature#gpu", "temperature#cpu",  "memory", "clock"],
-    
+
 
 //
 //________________________________________________________________
-// Modules 
+// Modules
 //
- 
+
 // Workspaces
     "sway/workspaces": {
         "all-outputs": false,
@@ -286,7 +298,7 @@
     "sway/mode": {
         "format": " {}"
     },
- 
+
 // Sway Scratchpad
     "custom/scratchpad": {
         "format-text": "{}",
@@ -297,17 +309,17 @@
         "on-click": "swaymsg 'scratchpad show'",
         "on-click-right": "swaymsg 'move scratchpad'"
     },
-  
+
 // Clock
     "clock": {
         "timezone": "Germany/Berlin",
-        "format": "{:20%y-%m-%d %H:%M}",
-        "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
-        "today-format": "<span color='#21a4df'><b><u>{}</u></b></span>",
-        "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",
-        "format-calendar-weeks": "<span color='#73ba25'><b>{}</b></span>",
-        "format-calendar-weekdays": "<span color='#21a4df'><b>{}</b></span>",
-        "interval": 10
+        "format": "20{:%y-%m-%d %H:%M}",
+        "tooltip-format": "<span color='#ffffff'><big>{:%Y %B}</big></span>\n<span color='#ffffff'><tt><small>{calendar}</small></tt></span>",
+        "interval": 20,
+//        "today-format": "<span color='#21a4df'><b><u>{}</u></b></span>",
+//        "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",
+//        "format-calendar-weeks": "<span color='#73ba25'><b>{}</b></span>",
+//        "format-calendar-weekdays": "<span color='#21a4df'><b>{}</b></span>",
     },
 
 // CPU
@@ -329,7 +341,7 @@
         // "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input",
         "format": "{temperatureC}°C",
 	"critical-threshold": 65,
-	"interval": 10    
+	"interval": 10
     },
 
 // GPU Temperature
@@ -340,12 +352,12 @@
         // "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input",
         "format": "{temperatureC}°C",
 	"critical-threshold": 80,
-	"interval": 10    
+	"interval": 10
     },
 
 // Memory
     "memory": {
         "format": "{used} GiB / {total} GiB",
-	"interval": 10
+	"interval": 20
     },
 }]

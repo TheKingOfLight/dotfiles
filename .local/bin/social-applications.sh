@@ -17,15 +17,14 @@
 ws="8"
 mode="tabbed"
 
-# Switch to workspace 
+# Switch to workspace
 swaymsg workspace $ws
 
-# Open application 
-element-desktop &
-distrobox-enter  -n tumbleweed -- /bin/sh -l -c  armcord &
+# Open application
+element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland &
+distrobox-enter  -n tumbleweed -- /bin/sh -l -c  'armcord --enable-features=UseOzonePlatform --ozone-platform=wayland' &
 thunderbird &
-distrobox-enter  -n tumbleweed -- /bin/sh -l -c  "signal-desktop --use-tray-icon" %U &
+distrobox-enter  -n tumbleweed -- /bin/sh -l -c  "signal-desktop --use-tray-icon --enable-features=UseOzonePlatform --ozone-platform=wayland " %U &
 
 # Set Mode
 swaymsg layout $mode
-

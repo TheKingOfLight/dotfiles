@@ -45,5 +45,8 @@ alias flatpak="flatpak --user"
 
 alias yast="su -c 'yast --qt'"
 
+# Compiler default
+alias ghc='ghc -O3 -outputdir ./bin/'
+
 # additional
 alias pokete="$HOME/.local/bin/start-pokete.sh"

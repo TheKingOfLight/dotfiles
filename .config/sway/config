@@ -67,7 +67,8 @@ bar {
 }
 
 # Shame XWayland
-for_window [shell="^((?!xdg_shell).)*$"] title_format "%title :: %shell"
+# for_window [shell="xwayland"] title_format "%title :: %shell"
+for_window [shell="^((?!xdg_shell).)*$"] title_format "<span background='#302226' foreground='#CCCCCC'>%title :: %shell</span>"
 
 
 #
