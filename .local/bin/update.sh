@@ -91,6 +91,9 @@ function print_seperator() {
 print_seperator 'zypper'
 sudo bash -c "$(declare -f zypper_update); zypper_update"
 
+print_seperator 'clamAV'
+sudo freshclam
+
 print_seperator 'distrobox'
 distrobox_update "${distrobox_names[@]}"
 
@@ -130,4 +133,3 @@ echo "Finnished"
 #	alacritty -e sh -c 'print_seperator "flatpak"; user_flatpak_update; read -p "Press a button to close"'
 #else
 #	# in a shell
-

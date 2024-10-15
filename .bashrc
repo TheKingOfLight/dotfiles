@@ -22,6 +22,7 @@
 
 # Import alias from file
 test -s ~/.alias && . ~/.alias || true
+test -s ~/.alias-private && . ~/.alias-private || true
 
 
 #

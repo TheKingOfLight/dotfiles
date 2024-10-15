@@ -75,7 +75,7 @@
 
 // Clock
     "clock": {
-        "timezone": "Germany/Berlin",
+        "timezone": "Europe/Berlin",
         "format": "20{:%y-%m-%d %H:%M}",
         "tooltip-format": "<span color='#ffffff'><big>{:%Y %B}</big></span>\n<span color='#ffffff'><tt><small>{calendar}</small></tt></span>",
         "interval": 20,
