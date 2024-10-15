@@ -1,0 +1,4 @@
+# SWAY on openSUSE config
+
+-
+-
